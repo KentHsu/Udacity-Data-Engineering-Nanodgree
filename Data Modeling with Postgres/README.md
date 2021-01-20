@@ -7,21 +7,21 @@ This project models user activity data for a music streaming app called Sparkify
 
 ```
 Data Modeling with Postgres
-|____data						# Dataset
+|____data			# Dataset
 | |____log_data
 | | |____...
 | |____song_data
 | | |____...
 |
-|____notebook					# notebook for developing and testing ETL
-| |____etl.ipynb					# developing ETL builder
-| |____test.ipynb				# testing ETL builder
+|____notebook			# notebook for developing and testing ETL
+| |____etl.ipynb		    # developing ETL builder
+| |____test.ipynb		    # testing ETL builder
 | |____cheat-sheet.pdf
 |
-|____src						# source code
-| |____etl.py						# ETL builder
-| |____sql_queries.py			# ETL query helper functions
-| |____create_tables.py			# database/table creation script
+|____src			# source code
+| |____etl.py			    # ETL builder
+| |____sql_queries.py		    # ETL query helper functions
+| |____create_tables.py		    # database/table creation script
 ```
 
 
@@ -57,11 +57,11 @@ Helper SQL query statements for `etl.py` and `create_tables.py`
 ```
 songplays
 	- songplay_id 	PRIMARY KEY
-	- start_time 		REFERENCES time (start_time)
-	- user_id			REFERENCES users (user_id)
+	- start_time 	REFERENCES time (start_time)
+	- user_id	REFERENCES users (user_id)
 	- level
-	- song_id 		REFERENCES songs (song_id)
-	- artist_id 		REFERENCES artists (artist_id)
+	- song_id 	REFERENCES songs (song_id)
+	- artist_id 	REFERENCES artists (artist_id)
 	- session_id
 	- location
 	- user_agent
@@ -70,28 +70,28 @@ songplays
 ### Dimension table
 ```
 users
-	- user_id 		PRIMARY KEY
+	- user_id 	PRIMARY KEY
 	- first_name
 	- last_name
 	- gender
 	- level
 
 songs
-	- song_id 		PRIMARY KEY
+	- song_id 	PRIMARY KEY
 	- title
 	- artist_id
 	- year
 	- duration
 
 artists
-	- artist_id 		PRIMARY KEY
+	- artist_id 	PRIMARY KEY
 	- name
 	- location
 	- latitude
 	- longitude
 
 time
-	- start_time 		PRIMARY KEY
+	- start_time 	PRIMARY KEY
 	- hour
 	- day
 	- week
