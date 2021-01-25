@@ -19,5 +19,5 @@ Learn to create relational and NoSQL data models to fit the diverse needs of dat
 
 ### Projects
 * Data Modeling with Postgres
-* Data Modeling with Apache Cassendra
+* Data Modeling with Apache Cassandra
 
