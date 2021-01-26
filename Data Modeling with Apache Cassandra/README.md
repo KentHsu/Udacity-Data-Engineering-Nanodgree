@@ -12,14 +12,14 @@ This project models user activity data for a music streaming app called Sparkify
 
 ```
 Data Modeling with Cassandra
-|____event_data						# Raw dataset
+|____event_data                # Raw dataset
 | |____...events.csv
 |
-|____event_datafile_new.csv		# new dataset by iterating event_data
+|____event_datafile_new.csv    # new dataset by iterating event_data
 |
-|____Project_1B.ipynb				# notebook for Apache Cassandra queries
+|____Project_1B.ipynb          # notebook for Apache Cassandra queries
 |
-|____images							# Referenced image for new dataset
+|____images                    # Referenced image for new dataset
 | |____image_event_datafile_new
 
 ```
