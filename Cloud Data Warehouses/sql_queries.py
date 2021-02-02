@@ -119,26 +119,63 @@ time_table_create = ("""
 # STAGING TABLES
 
 staging_events_copy = ("""
-""").format()
+    copy staging_events
+    from {0}
+    iam_role {1}
+    json {2};
+""").format(LOG_DATA, ARN, LOG_JSONPATH)
 
 staging_songs_copy = ("""
-""").format()
+    copy staging_songs
+    from {0}
+    iam_role {1}
+    json 'auto';
+""").format(SONG_DATA, ARN)
 
 # FINAL TABLES
 
 songplay_table_insert = ("""
+    INSERT INTO songplays (start_time, user_id, level, song_id, artist_id, session_id, location, user_agent)
+    SELECT DISTINCT 
+        timestamp with time zone 'epoch' + se.ts/1000 * interval '1 second', se.userId, se.level, 
+        ss.song_id, ss.artist_id, se.sessionId, se.location, se.userAgent
+    FROM staging_events AS se INNER JOIN staging_songs AS ss
+    ON se.song = ss.title AND se.artist = ss.artist_name AND se.length = ss.duration
+    WHERE se.page = 'NextSong'
+    
 """)
 
 user_table_insert = ("""
+    INSERT INTO users (user_id, first_name, last_name, gender, level)
+    SELECT DISTINCT userId, firstName, lastName, gender, level
+    FROM staging_events
+    WHERE page = 'NextSong' AND userId IS NOT NULL
 """)
 
 song_table_insert = ("""
+    INSERT INTO songs (song_id, title, artist_id, year, duration)
+    SELECT DISTINCT song_id, title, artist_id, year, duration
+    FROM staging_songs
+    WHERE song_id IS NOT NULL
 """)
 
 artist_table_insert = ("""
+    INSERT INTO artists (artist_id, name, location, latitude, longitude)
+    SELECT DISTINCT artist_id, artist_name, artist_location, artist_latitude, artist_longitude
+    FROM staging_songs
+    WHERE artist_id IS NOT NULL
 """)
 
 time_table_insert = ("""
+    INSERT INTO time (start_time, hour, day, week, month, year, weekday)
+    SELECT start_time, 
+           extract(hour from start_time), 
+           extract(day from start_time), 
+           extract(week from start_time), 
+           extract(month from start_time), 
+           extract(year from start_time), 
+           extract(weekday from start_time)
+    FROM songplays
 """)
 
 # QUERY LISTS
