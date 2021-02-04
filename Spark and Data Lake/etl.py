@@ -26,6 +26,17 @@ def create_spark_session():
 
 
 def process_song_data(spark, input_data, output_data):
+    """ Process song data and create songs and artists table
+    
+        Arguments:
+            spark {object}: SparkSession object
+            input_data {object}: Source S3 endpoint
+            output_data {object}: Target S3 endpoint
+
+        Returns:
+            None
+    """
+
     # get filepath to song data file
     song_data = os.path.join(input_data + 'song_data/*/*/*/*.json')
     
@@ -51,6 +62,17 @@ def process_song_data(spark, input_data, output_data):
 
     
 def process_log_data(spark, input_data, output_data):
+    """ Process log data and create users, time and songplays table
+
+        Arguments:
+            spark {object}: SparkSession object
+            input_data {object}: Source S3 endpoint
+            output_data {object}: Target S3 endpoint
+
+        Returns:
+            None
+    """
+
     # get filepath to log data file
     log_data = os.path.join(input_data + 'log_data/*/*/*.json')
 
