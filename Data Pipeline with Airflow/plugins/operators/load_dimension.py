@@ -20,7 +20,10 @@ class LoadDimensionOperator(BaseOperator):
         self.mode = mode
 
     def execute(self, context):
+		self.log.info("Connect to Redshift")
         redshift = PostgresHook(postgres_conn_id=self.redshift_conn_id)
         if self.mode == "delete-load":
+			self.log.info("Start deleting data on Redshift")
             redshift.run("TRUNCATE {}".format(self.table))
+		self.log.info("Run INSERT query to load data from S3 to Redshift")
         redshift.run("INSERT INTO {} {}".format(self.table, self.sql_query))
