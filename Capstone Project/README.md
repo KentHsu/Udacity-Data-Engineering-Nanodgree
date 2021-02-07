@@ -1,7 +1,7 @@
 # Udacity Data Engineer Nanodegree - Capstone Project
 
 ### Project Summary
---describe your project at a high level--
+This project build up a data warehouse by integrating immigration data and demography data together to provide a wider range [single-source-of-truth](https://en.wikipedia.org/wiki/Single_source_of_truth) database.
 
 The project follows the follow steps:
 
@@ -16,10 +16,28 @@ The project follows the follow steps:
 ### Step 1: Scope the Project and Gather Data
 
 #### Scope
-Explain what you plan to do in the project in more detail. What data do you use? What is your end solution look like? What tools did you use? etc>
+This project will integrate I94 immigration data, world temperature data and US demographic data to setup a data warehouse with fact and dimension tables.
+
+* Data Sets 
+    1. [I94 Immigration Data](https://travel.trade.gov/research/reports/i94/historical/2016.html)
+    2. [World Temperature Data](https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data)
+    3. [U.S. City Demographic Data](https://public.opendatasoft.com/explore/dataset/us-cities-demographics/export/)
+
+* Tools
+    * AWS S3: data storage
+    * AWS Redshift: data warehouse and data analysis
+    * Python for data processing
+        * Pandas - exploratory data analysis on small data set
+        * PySpark - data processing on large data set
 
 #### Describe and Gather Data 
-Describe the data sets you're using. Where did it come from? What type of information is included? 
+
+| Data Set | Format | Description |
+| ---      | ---    | ---         |
+|[I94 Immigration Data](https://travel.trade.gov/research/reports/i94/historical/2016.html)| SAS | Data contains international visitor arrival statistics by world regions and select countries (including top 20), type of visa, mode of transportation, age groups, states visited (first intended address only), and the top ports of entry (for select countries).|
+|[World Temperature Data](https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data)| CSV | This dataset is from Kaggle and contains monthly average temperature data at different country in the world wide.|
+|[U.S. City Demographic Data](https://public.opendatasoft.com/explore/dataset/us-cities-demographics/export/)| CSV | This dataset contains information about the demographics of all US cities and census-designated places with a population greater or equal to 65,000.|
+
 
 ---
 
