@@ -101,7 +101,7 @@ Data quality checks includes
 1. No empty table after running ETL data pipeline
 2. Data schema of every dimensional table matches data model
 
-Please refer to [Data_Quality_Check.ipynb](https://github.com/KentHsu/Udacity-DEND/blob/main/Spark%20and%20Data%20Lake/Data_Quality_Check.ipynb).
+Please refer to [Data_Quality_Check.ipynb](https://github.com/KentHsu/Udacity-DEND/blob/main/Capstone%20Project/Data_Quality_Check.ipynb).
 
 #### 4.3 Data dictionary 
 
@@ -110,14 +110,37 @@ Please refer to [Data_Quality_Check.ipynb](https://github.com/KentHsu/Udacity-DE
 ---
 
 ### Step 5: Complete Project Write Up
-1. Clearly state the rationale for the choice of tools and technologies for the project.
-    * Spark is capable for large dataset processing
-    * Airflow do help build up data pipeline effeciently
 
-2. Propose how often the data should be updated and why.
-    * The dataset should be update monthly
+#### Tools and Technologies
+1. AWS S3 for data storage
+2. Pandas for sample data set exploratory data analysis
+3. PySpark for large data set data processing to transform staging table to dimensional table
 
-3. Write a description of how you would approach the problem differently under the following scenarios:
- * The data was increased by 100x.
- * The data populates a dashboard that must be updated on a daily basis by 7am every day.
- * The database needed to be accessed by 100+ people.
+
+#### Data Update Frequency
+1. Tables created from immigration and temperature data set should be updated monthly since the raw data set is built up monthly.
+2. Tables created from demography data set could be updated annually since demography data collection takes time and high frequent demography might take high cost but generate wrong conclusion.
+3. All tables should be update in an append-only mode.
+
+
+#### Future Design Considerations
+1. The data was increased by 100x.
+	
+	If Spark with standalone server mode can not process 100x data set, we could consider to put data in [AWS EMR](https://aws.amazon.com/tw/emr/?nc2=h_ql_prod_an_emr&whats-new-cards.sort-by=item.additionalFields.postDateTime&whats-new-cards.sort-order=desc) which is a distributed data cluster for processing large data sets on cloud
+
+2. The data populates a dashboard that must be updated on a daily basis by 7am every day.
+
+	[Apache Airflow](https://airflow.apache.org) could be used for building up a ETL data pipeline to regularly update the date and populate a report. Apache Airflow also integrate with Python and AWS very well. More applications can be combined together to deliever more powerful task automation.
+
+3. The database needed to be accessed by 100+ people.
+
+	[AWS Redshift](https://aws.amazon.com/tw/redshift/?nc2=h_ql_prod_db_rs&whats-new-cards.sort-by=item.additionalFields.postDateTime&whats-new-cards.sort-order=desc) can handle up to 500 connections. If this SSOT database will be accessed by 100+ people, we can move this database to Redshift with confidence to handle this request. Cost/Benefit analysis will be needed if we are going be implement this cloud solution.
+
+---
+
+### Future Improvements
+There are several incompletions within these data sets. We will need to collect more data to get a more complete SSOT database.
+
+1. Immigration data set is based at 2016 but temperature data set only get to 2013 which is not enough for us to see the temperature change at 2016.
+	
+2. Missing state and city in label description file. This makes it hard to join immigration tables and demography tables.
