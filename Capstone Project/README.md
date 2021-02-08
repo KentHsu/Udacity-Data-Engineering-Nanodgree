@@ -42,11 +42,22 @@ This project will integrate I94 immigration data, world temperature data and US 
 ---
 
 ### Step 2: Explore and Assess the Data
+
 #### Explore the Data 
-Identify data quality issues, like missing values, duplicate data, etc.
+
+1. Use pandas for exploratory data analysis to get an overview on these data sets
+2. Split data sets to dimensional tables and change column names for better understanding
+3. Utilize PySpark on one of the SAS data sets to test ETL data pipeline logic
 
 #### Cleaning Steps
-Document steps necessary to clean the data
+
+1. Transform arrdate, depdate from SAS time format to pandad.datetime
+2. Parse description file to get auxiliary dimension table - country_code, city _code, state _code, mode, visa
+3. Tranform city, state to upper case to match city _code and state _code table
+
+Please refer to [Capstone_Project.ipynb](https://github.com/KentHsu/Udacity-DEND/blob/main/Capstone%20Project/Capstone_Project.ipynb).
+
+(This step was completed in Udacity workspace as pre-steps for building up and testing the ETL data pipeline. File paths should be modified if notebook is run locally.)
 
 ---
 
