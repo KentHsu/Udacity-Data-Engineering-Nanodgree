@@ -87,18 +87,25 @@ Since the purpose of this data warehouse is for OLAP and BI app usage, we will m
 ---
 
 ### Step 4: Run Pipelines to Model the Data 
+
 #### 4.1 Create the data model
-Build the data pipelines to create the data model.
+
+Data processing and data model was created by Spark.
+
+Please refer to [Capstone_Project.ipynb](https://github.com/KentHsu/Udacity-DEND/blob/main/Capstone%20Project/Capstone_Project.ipynb).
 
 #### 4.2 Data Quality Checks
-Explain the data quality checks you'll perform to ensure the pipeline ran as expected. These could include:
- 
- * Integrity constraints on the relational database (e.g., unique key, data type, etc.)
- * Unit tests for the scripts to ensure they are doing the right thing
- * Source/Count checks to ensure completeness
+
+Data quality checks includes
+
+1. No empty table after running ETL data pipeline
+2. Data schema of every dimensional table matches data model
+
+Please refer to [Data_Quality_Check.ipynb](https://github.com/KentHsu/Udacity-DEND/blob/main/Spark%20and%20Data%20Lake/Data_Quality_Check.ipynb).
 
 #### 4.3 Data dictionary 
-Create a data dictionary for your data model. For each field, provide a brief description of what the data is and where it came from. You can include the data dictionary in the notebook or in a separate file.
+
+![alt text](https://github.com/KentHsu/Udacity-DEND/blob/main/Capstone%20Project/images/data_dictionary.png)
 
 ---
 
