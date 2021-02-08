@@ -62,11 +62,27 @@ Please refer to [Capstone_Project.ipynb](https://github.com/KentHsu/Udacity-DEND
 ---
 
 ### Step 3: Define the Data Model
-#### 3.1 Conceptual Data Model
-Map out the conceptual data model and explain why you chose that model
 
-#### 3.2 Mapping Out Data Pipelines
-List the steps necessary to pipeline the data into the chosen data model
+#### Conceptual Data Model
+Since the purpose of this data warehouse is for OLAP and BI app usage, we will model these data sets with star schema data modeling.
+
+* Star Schema
+
+	![alt text](https://github.com/KentHsu/Udacity-DEND/blob/main/Capstone%20Project/images/conceptual_data_model.png)
+
+#### Data Pipeline Build Up Steps
+
+1. Assume all data sets are stored in S3 buckets as below
+	* `[Source_S3_Bucket]/immigration/18-83510-I94-Data-2016/*.sas7bdat`
+	* `[Source_S3_Bucket]/I94_SAS_Labels_Descriptions.SAS`
+	* `[Source_S3_Bucket]/temperature/GlobalLandTemperaturesByCity.csv`
+	* `[Source_S3_Bucket]/demography/us-cities-demographics.csv`
+2. Follow by Step 2 – Cleaning step to clean up data sets
+3. Transform immigration data to 1 fact table and 2 dimension tables, fact table will be partitioned by state
+4. Parsing label description file to get auxiliary tables
+5. Transform temperature data to dimension table
+6. Split demography data to 2 dimension tables
+7. Store these tables back to target S3 bucket
 
 ---
 
